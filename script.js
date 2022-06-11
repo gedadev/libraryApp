@@ -2,6 +2,7 @@ let myLibrary = [];
 const data = document.querySelector('#form').elements;  // HTMLFormElement.elements
 const btnSubmit = document.querySelector('#btnSubmit'); 
 const bookContainer = document.querySelector('#book-info');
+const bookCards = document.querySelectorAll('.book-card');
 
 function Book (title, author, pages, read) {
     this.title = title;
@@ -19,26 +20,27 @@ Book.prototype.info = function(){
 
 function addBookToLibrary (data) {
     myLibrary.push(new Book(data[0].value, data[1].value, data[2].value, data[3].value));
-    console.log(myLibrary);
-    displayBooks();
+    displayBooks(Array.from(bookContainer.children));
 }
 
 btnSubmit.addEventListener('click', () => {
     addBookToLibrary(data);
 });
 
-function displayBooks (){
-    for (let book in myLibrary) {
+function displayBooks(cardList){
+
+    myLibrary.forEach((element, index) => {
         const bookCard = document.createElement('div');
-        bookCard.className = 'book-card';
-        const titleInfo = document.createTextNode(`Title: ${myLibrary[book].title}`);
-        bookCard.appendChild(titleInfo);
-        const authorInfo = document.createTextNode(`Author: ${myLibrary[book].author}`);
-        bookCard.appendChild(authorInfo);
-        const pagesInfo = document.createTextNode(`Pages: ${myLibrary[book].pages}`);
-        bookCard.appendChild(pagesInfo);
-        const readInfo = document.createTextNode(`Read?: ${myLibrary[book].read}`);
-        bookCard.appendChild(readInfo);
+        bookCard.classList.add('book-card');
+        bookCard.id = `book-${index}`;
         bookContainer.appendChild(bookCard);
-    }
+        for(let value in Object.entries(element)){
+            let keys = Object.keys(element);
+            let bookInfo = document.createElement('p');
+            let val = document.createTextNode(`${keys[value]}: ${element[keys[value]]}`);
+            bookInfo.appendChild(val);
+            bookCard.appendChild(bookInfo);
+            bookInfo.className = 'book-info';
+        }
+    });
 }
