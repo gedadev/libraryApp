@@ -41,7 +41,7 @@ function displayBooks(cardList){
             for(let value in Object.entries(element)){
                 let keys = Object.keys(element);
                 let bookInfo = document.createElement('p');
-                let val = document.createTextNode(`${keys[value]}: ${element[keys[value]]}`);
+                let val = document.createTextNode(`${keys[value].replace(/^\w/, (c) => c.toUpperCase())}: ${element[keys[value]]}`);
                 bookInfo.appendChild(val);
                 bookCard.appendChild(bookInfo);
                 bookInfo.className = 'book-info';
