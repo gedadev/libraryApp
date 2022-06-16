@@ -1,5 +1,70 @@
+:root {
+    --bg-color: rgb(62, 90, 95);
+    --accent-color: rgb(221, 231, 231);
+    --font-color: rgb(30, 31, 32);
+}
+
 body {
-    background-color: rgb(196, 222, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bg-color);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#header {
+    width: 75%;
+}
+
+#header > h1 {
+    color: var(--accent-color);
+    font-size: 40px;
+}
+
+#form-container {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0 80px;
+    color: var(--accent-color);
+    font-size: 22px;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+#form .input-field {
+    display: flex;
+}
+
+#form .input-field > * {
+    flex: 1 1 0;
+}
+
+#form .input-field > input {
+    border-radius: 6px;
+    margin: 0 20px;
+    height: 22px;
+    border: 0;
+    color: var(--font-color);
+}
+
+#btnSubmit {
+    border-radius: 10px;
+    width: 75%;
+    align-self: center;
+    border: 0;
+    height: 50px;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--font-color);
+    background-color: var(--accent-color);
+}
+
+#btnSubmit:hover {
+    background-color: rgb(198, 215, 216);
 }
 
 #book-info {
@@ -7,13 +72,16 @@ body {
     gap: 10px;
     flex-wrap: wrap;
     justify-content: center;
+    width: 75%;
 }
 
 .book-card {
     border-radius: 10px;
-    flex: 0 0 250px;
+    flex: 1 0 auto;
+    max-width: 500px;
+    min-width: 250px;
     padding: 20px;
-    background-color: rgb(225, 241, 255);
+    background-color: var(--accent-color);
     display: flex;
     flex-direction: column;
     align-items: center;
