@@ -92,3 +92,20 @@ body {
     font-weight: bold;
     font-size: 20px;
 }
+
+.book-card > div {
+    flex: 1 0 auto;
+    min-width: 50%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    margin-top: 28px;
+}
+
+.book-card > div >.fa-trash-can:hover {
+    color: rgb(124, 124, 124);
+}
+
+.book-card > div >.fa-pen-to-square:hover {
+    color: rgb(124, 124, 124);
+}
