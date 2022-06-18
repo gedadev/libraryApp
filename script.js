@@ -40,6 +40,15 @@ function displayBooks(){
             bookCard.appendChild(bookInfo);
             bookInfo.className = 'book-info';
         }
+        let modSection = document.createElement('div');
+        let delIcon = document.createElement('i');
+        delIcon.id = `del-book-${index}`;
+        delIcon.className = 'fa-solid fa-trash-can';
+        let editIcon = document.createElement('i');
+        editIcon.className = 'fa-solid fa-pen-to-square';
+        modSection.appendChild(editIcon);
+        modSection.appendChild(delIcon);
+        bookCard.appendChild(modSection);
     });
 }
 
