@@ -21,11 +21,11 @@ function addBookToLibrary (data) {
 
 btnSubmit.addEventListener('click', () => {
     addBookToLibrary(data);
-    clrContainer(bookContainer);
     displayBooks();
 });
 
 function displayBooks(){
+    clrContainer(bookContainer);
     myLibrary.forEach((element, index) => {
         const bookCard = document.createElement('div');
         bookCard.classList.add('book-card');
@@ -42,23 +42,30 @@ function displayBooks(){
         }
         let modSection = document.createElement('div');
         let delIcon = document.createElement('i');
-        delIcon.id = `del-book-${index}`;
         delIcon.className = 'fa-solid fa-trash-can';
+        delIcon.addEventListener('click', () => {
+            delBook(index);
+        });
         let editIcon = document.createElement('i');
         editIcon.className = 'fa-solid fa-pen-to-square';
+        editIcon.addEventListener('click', (e) => {
+            console.log(e);
+        });
         modSection.appendChild(editIcon);
         modSection.appendChild(delIcon);
         bookCard.appendChild(modSection);
     });
 }
 
+function delBook(index) {
+    myLibrary.splice(index, 1);
+    displayBooks();
+}
+
 function clrContainer(container) {
-    console.log(container.children);
     try {
         while(container.firstChild) {
             container.firstChild.remove();
         }
-    } catch(e) {
-
-    }
+    } catch(e){}
 }
