@@ -3,6 +3,8 @@ const data = document.querySelector('#form').elements;  // HTMLFormElement.eleme
 const btnSubmit = document.querySelector('#btnSubmit'); 
 const bookContainer = document.querySelector('#book-info');
 const bookCards = document.querySelectorAll('.book-card');
+const newBook = document.querySelector('#add-book');
+const formContainer = document.querySelector('#form-container');
 
 function Book (title, author, pages, read) {
     this.title = title;
@@ -22,6 +24,7 @@ function addBookToLibrary (data) {
 btnSubmit.addEventListener('click', () => {
     addBookToLibrary(data);
     displayBooks();
+    formContainer.style.display = "none";
 });
 
 function displayBooks(){
@@ -47,7 +50,7 @@ function displayBooks(){
             delBook(index);
         });
         let editIcon = document.createElement('i');
-        editIcon.className = 'fa-solid fa-pen-to-square';
+        editIcon.className = 'fa-solid fa-book-open';
         editIcon.addEventListener('click', (e) => {
             console.log(e);
         });
@@ -64,8 +67,12 @@ function delBook(index) {
 
 function clrContainer(container) {
     try {
-        while(container.firstChild) {
-            container.firstChild.remove();
+        while(container.children[1]) {
+            container.children[1].remove();
         }
     } catch(e){}
 }
+
+newBook.addEventListener('click', () => {
+    formContainer.style.display = "flex";
+});

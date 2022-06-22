@@ -2,6 +2,8 @@
     --bg-color: rgb(62, 90, 95);
     --accent-color: rgb(221, 231, 231);
     --font-color: rgb(30, 31, 32);
+    --hover-color: rgb(124, 124, 124);
+    --transp-bg: rgba(62, 90, 95, 0.7);
 }
 
 body {
@@ -22,17 +24,27 @@ body {
 }
 
 #form-container {
-    display: flex;
     justify-content: center;
-    margin: 50px 0 80px;
     color: var(--accent-color);
     font-size: 22px;
+    position: fixed;
+    background-color: var(--transp-bg);
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    display: none;
 }
 
 #form {
     display: flex;
     flex-direction: column;
     gap: 18px;
+    background-color: var(--bg-color);
+    box-shadow: 10px 8px 5px var(--font-color);
+    justify-self: center;
+    align-self: center;
+    padding: 50px 30px;
+    border-radius: 18px;
 }
 
 #form .input-field {
@@ -64,7 +76,7 @@ body {
 }
 
 #btnSubmit:hover {
-    background-color: rgb(198, 215, 216);
+    background-color: var(--hover-color);
 }
 
 #book-info {
@@ -98,14 +110,27 @@ body {
     min-width: 50%;
     display: flex;
     justify-content: space-between;
-    font-size: 18px;
+    font-size: 20px;
     margin-top: 28px;
 }
 
 .book-card > div >.fa-trash-can:hover {
-    color: rgb(124, 124, 124);
+    color: var(--hover-color);
 }
 
-.book-card > div >.fa-pen-to-square:hover {
-    color: rgb(124, 124, 124);
+.book-card > div >.fa-book-open:hover {
+    color: var(--hover-color);
+}
+
+.book-card:first-child {
+    font-size: 101px;
+    align-self: center;
+    justify-self: center;
+    padding: 102px 0;
+    min-width: 250px;
+    max-width: 500px;
+}
+
+.book-card:first-child > i:hover {
+    color: var(--hover-color);
 }
