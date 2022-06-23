@@ -1,5 +1,6 @@
 let myLibrary = [];
-const data = document.querySelector('#form').elements;  // HTMLFormElement.elements
+const data = document.querySelector('#form').elements;
+const checkbox = document.querySelector('#read');
 const btnSubmit = document.querySelector('#btnSubmit'); 
 const bookContainer = document.querySelector('#book-info');
 const bookCards = document.querySelectorAll('.book-card');
@@ -18,7 +19,13 @@ Book.prototype.info = function(){
 }
 
 function addBookToLibrary (data) {
-    myLibrary.push(new Book(data[0].value, data[1].value, data[2].value, data[3].value));
+    let readStatus = "";
+    if(checkbox.checked){
+        readStatus = "read";
+    } else {
+        readStatus = "not read yet";
+    }
+    myLibrary.push(new Book(data[0].value, data[1].value, data[2].value, readStatus));
 }
 
 btnSubmit.addEventListener('click', () => {
