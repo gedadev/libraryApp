@@ -58,8 +58,11 @@ function displayBooks(){
         });
         let editIcon = document.createElement('i');
         editIcon.className = 'fa-solid fa-book-open';
-        editIcon.addEventListener('click', (e) => {
-            console.log(e);
+        if(myLibrary[index].read === 'read') {
+            editIcon.classList.add('read');
+        }
+        editIcon.addEventListener('click', () => {
+            editReadStatus(index, editIcon);
         });
         modSection.appendChild(editIcon);
         modSection.appendChild(delIcon);
@@ -69,6 +72,17 @@ function displayBooks(){
 
 function delBook(index) {
     myLibrary.splice(index, 1);
+    displayBooks();
+}
+
+function editReadStatus(index, icon){
+    if(myLibrary[index].read === "not read yet"){
+        myLibrary[index].read = "read";
+        icon.classList.add('read');
+    } else if(myLibrary[index].read === "read"){
+        myLibrary[index].read = "not read yet";
+        icon.classList.remove('read');
+    }
     displayBooks();
 }
 

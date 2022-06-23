@@ -114,11 +114,15 @@ body {
     margin-top: 28px;
 }
 
-.book-card > div >.fa-trash-can:hover {
+.book-card > div >.fa-book-open:hover {
     color: var(--hover-color);
 }
 
-.book-card > div >.fa-book-open:hover {
+.book-card > div >.read {
+    color: green;
+}
+
+.book-card > div >.fa-trash-can:hover {
     color: var(--hover-color);
 }
 
