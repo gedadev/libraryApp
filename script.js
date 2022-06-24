@@ -64,7 +64,7 @@ function displayBooks(){
             editIcon.classList.add('read');
         }
         editIcon.addEventListener('click', () => {
-            editReadStatus(index, editIcon);
+            element.editReadStatus(editIcon);
         });
         modSection.appendChild(editIcon);
         modSection.appendChild(delIcon);
@@ -77,7 +77,18 @@ function delBook(index) {
     displayBooks();
 }
 
-function editReadStatus(index, icon){
+Book.prototype.editReadStatus = function(icon) {
+    if (this.read === 'not read yet') {
+        this.read = "read";
+        icon.classList.add('read');
+    } else if (this.read === 'read') {
+        this.read = "not read yet"
+        icon.classList.remove('read');
+    }
+    displayBooks();
+}
+
+function editStatus(index, icon){
     if(myLibrary[index].read === "not read yet"){
         myLibrary[index].read = "read";
         icon.classList.add('read');
