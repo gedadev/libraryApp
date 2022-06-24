@@ -43,7 +43,7 @@ body {
     box-shadow: 10px 8px 5px var(--font-color);
     justify-self: center;
     align-self: center;
-    padding: 50px 30px;
+    padding: 30px 30px 50px;
     border-radius: 18px;
 }
 
@@ -73,6 +73,19 @@ body {
     font-weight: bold;
     color: var(--font-color);
     background-color: var(--accent-color);
+}
+
+#btn-close {
+    align-self: flex-end;
+}
+
+#btn-close > i {
+    padding-right: 20px;
+    color: rgb(211, 90, 90);
+}
+
+#btn-close > i:hover {
+    color: var(--hover-color);
 }
 
 #btnSubmit:hover {

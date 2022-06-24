@@ -6,6 +6,8 @@ const bookContainer = document.querySelector('#book-info');
 const bookCards = document.querySelectorAll('.book-card');
 const newBook = document.querySelector('#add-book');
 const formContainer = document.querySelector('#form-container');
+const btnClose = document.querySelector('#close');
+
 
 function Book (title, author, pages, read) {
     this.title = title;
@@ -96,4 +98,8 @@ function clrContainer(container) {
 
 newBook.addEventListener('click', () => {
     formContainer.style.display = "flex";
+});
+
+btnClose.addEventListener('click', () => {
+    formContainer.style.display = "none";
 });
