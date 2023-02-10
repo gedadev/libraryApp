@@ -1,5 +1,5 @@
 let myLibrary = [];
-const data = document.querySelector('#form').elements;
+const data = document.querySelector('#form');
 const checkbox = document.querySelector('#read');
 const btnSubmit = document.querySelector('#btnSubmit'); 
 const bookContainer = document.querySelector('#book-info');
@@ -8,6 +8,8 @@ const newBook = document.querySelector('#add-book');
 const formContainer = document.querySelector('#form-container');
 const btnClose = document.querySelector('#close');
 
+
+
 class Book{
     constructor(title, author, pages, read){
         this.title = title;
@@ -15,8 +17,9 @@ class Book{
         this.pages = pages;
         this.read = read;
     }
-    static addBookToLibrary (data) {
+    static addBookToLibrary (d) {
         let readStatus = "";
+        let data = d.elements;
         if(checkbox.checked){
             readStatus = "read";
         } else {
@@ -80,7 +83,22 @@ class Book{
             }
         } catch(e){}
     }
+    formValidations(input) {
+        if (input.validity.patternMismatch) {
+            console.log('You need to enter a number');
+        } else if (input.validity.valueMissing) {
+            console.log('You need to fill this field to continue');
+        } else if (input.validity.tooShort) {
+            if (input.id === 'pages') {
+                console.log(`Try a bigger number`);
+            } else {
+                console.log(`Field must be at least ${input.minLength} characters`);
+            }
+        } 
+    }
 }
+
+let lib = new Book();
 
 btnSubmit.addEventListener('click', () => {
     Book.addBookToLibrary(data);
@@ -95,3 +113,16 @@ newBook.addEventListener('click', () => {
 btnClose.addEventListener('click', () => {
     formContainer.style.display = "none";
 });
+
+
+for (let i = 0; i < data.length; i++) {
+    if (i < 3) {
+        data[i].addEventListener('input', (e) => {
+            if (data[i].validity.valid) {
+                console.log('ok');
+            } else {
+                lib.formValidations(data[i]);
+            }
+        });
+    }
+}
