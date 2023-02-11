@@ -99,6 +99,13 @@ class Book{
             }
         } 
     }
+    enableBtn(inputs, btnSubmit) {
+        if (inputs[0].validity.valid && inputs[1].validity.valid && inputs[2].validity.valid) {
+            btnSubmit.disabled = false;
+        } else {
+            btnSubmit.disabled = true;
+        }
+    }
 }
 
 let lib = new Book();
@@ -118,14 +125,13 @@ btnClose.addEventListener('click', () => {
 });
 
 
-for (let i = 0; i < data.length; i++) {
-    if (i < 3) {
-        data[i].addEventListener('input', (e) => {
-            if (data[i].validity.valid) {
-                errMsg[i].style.display = "none";
-            } else {
-                lib.formValidations(data[i], errMsg[i]);
-            }
-        });
-    }
+for (let i = 0; i < 3; i++) {
+    data[i].addEventListener('input', (e) => {
+        if (data[i].validity.valid) {
+            errMsg[i].style.display = "none";
+        } else {
+            lib.formValidations(data[i], errMsg[i]);
+        }
+        lib.enableBtn(data, btnSubmit);
+    });
 }
