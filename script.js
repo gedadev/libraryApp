@@ -7,8 +7,7 @@ const bookCards = document.querySelectorAll('.book-card');
 const newBook = document.querySelector('#add-book');
 const formContainer = document.querySelector('#form-container');
 const btnClose = document.querySelector('#close');
-
-
+const errMsg = document.querySelectorAll('.error');
 
 class Book{
     constructor(title, author, pages, read){
@@ -83,16 +82,20 @@ class Book{
             }
         } catch(e){}
     }
-    formValidations(input) {
+    formValidations(input, errorMsg) {
         if (input.validity.patternMismatch) {
-            console.log('You need to enter a number');
+            errorMsg.textContent = "You need to enter a number";
+            errorMsg.style.display = "block";
         } else if (input.validity.valueMissing) {
-            console.log('You need to fill this field to continue');
+            errorMsg.textContent = "You need to fill this field to continue";
+            errorMsg.style.display = "block";
         } else if (input.validity.tooShort) {
             if (input.id === 'pages') {
-                console.log(`Try a bigger number`);
+                errorMsg.textContent = "Try a bigger number";
+                errorMsg.style.display = "block";
             } else {
-                console.log(`Field must be at least ${input.minLength} characters`);
+                errorMsg.textContent = `Field must be at least ${input.minLength} characters`;
+                errorMsg.style.display = "block";
             }
         } 
     }
@@ -119,9 +122,9 @@ for (let i = 0; i < data.length; i++) {
     if (i < 3) {
         data[i].addEventListener('input', (e) => {
             if (data[i].validity.valid) {
-                console.log('ok');
+                errMsg[i].style.display = "none";
             } else {
-                lib.formValidations(data[i]);
+                lib.formValidations(data[i], errMsg[i]);
             }
         });
     }
